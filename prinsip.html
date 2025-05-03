@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prinsip Hidup</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #0a0f1a;
+      color: #ffffff;
+    }
+
+    .life-principle {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .life-principle h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .typewriter p {
+      font-size: 1.5rem;
+      border-right: 2px solid #00ff88;
+      white-space: normal;
+      overflow: visible;
+      display: inline-block;
+      text-align: left;
+      max-width: 90%;
+      margin: auto;
+      min-height: 100px;
+    }
+
+    .start-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .start-button:hover {
+      background-color: #00cc66;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="life-principle">
+    <div class="container">
+      <h2>Prinsip Hidup</h2>
+      <div class="typewriter">
+        <p id="principle-text"></p>
+      </div>
+      <button class="start-button" onclick="startTyping()">Mulai</button>
+    </div>
+  </section>
+
+  <!-- Audio -->
+  <audio id="type-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5e9fd29090.mp3?filename=typewriter-key-1-103174.mp3"></audio>
+
+
+  <script>
+    const text = "Lakukan yang terbaik, nikmati prosesnya, dan jangan takut gagal!";
+    const principleElement = document.getElementById("principle-text");
+    const typeSound = document.getElementById("type-sound");
+    const introSound = document.getElementById("intro-sound");
+    let index = 0;
+    let typingStarted = false;
+
+    function startTyping() {
+      if (typingStarted) return;
+      typingStarted = true;
+
+ 
+
+      typeLetter();
+    }
+
+    function typeLetter() {
+      if (index < text.length) {
+        principleElement.textContent += text.charAt(index);
+        typeSound.currentTime = 0;
+        typeSound.play();
+        index++;
+        setTimeout(typeLetter, 100);
+      }
+    }
+  </script>
+
+</body>
+</html>

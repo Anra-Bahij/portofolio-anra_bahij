@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anra Syauqiy Bahij - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #0f172a;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .button {
+      display: block;
+      width: 150px;
+      margin: 20px 0;
+      padding: 15px;
+      text-align: center;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #0f172a;
+    }
+
+    #prinsip-btn {
+      background-color: #768ea8;
+      color: black;
+    }
+
+    #prinsip-btn:hover {
+      background-color: #0f172a;
+      color: white;
+    }
+
+    .music-button-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <h1 class="logo">Anra Syauqiy Bahij</h1>
+    <nav class="nav">
+      <a href="#about">about me</a>
+      <a href="#projects">Deeper</a>
+      <a href="#hijau">sound</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" data-aos="fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; height: 50vh; padding-top: 40px;">
+  <h2 style="margin-bottom: 10px;"><span id="typed-text"></span></h2>
+  <p>Pengembang Web dan Mobile dari Cengkareng</p>
+  <a href="prinsip.html" class="button" id="prinsip-btn" style="margin-top: 20px;">Prinsip Hidup</a>
+</section>
+
+<!-- Tombol Play Music -->
+<button class="button" onclick="document.getElementById('bg-music').play()">Play Music</button>
+<audio id="bg-music" src="hacker.mp3"></audio>
+
+<section id="about" class="section" data-aos="fade-right">
+  <div class="container">
+    <h2>Tentang Saya</h2>
+    <p>Seorang pelajar SMP yang memiliki 0 prestasi tetapi gemar membuat hal baru yang menantang. Senang berkenalan!</p>
+  </div>
+</section>
+
+<section id="projects" class="section" data-aos="fade-left">
+  <div class="container">
+    <h2>Lebih dalam tentang Saya</h2>
+    <div class="projects-grid">
+      <div class="project-card" data-aos="zoom-in">
+        <h3>My Project</h3>
+        <p>Mengembangkan website portofolio, glitch, dan membuat script whatsapp.</p>
+      </div>
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+        <h3>Riwayat Sekolah</h3>
+        <p>SDN 14 CENGKARENG TIMUR dan SMPN 45 JAKARTA.</p>
+      </div>
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+        <h3>Hobi Saya</h3>
+        <p>Bermain sepak bola dan game serta selalu kalah dalam hal percintaan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hijau" class="section" data-aos="fade-up">
+  <a href="tes.html" class="button">Lagu Favorite</a>
+  <a href="game.html" class="button" style="margin-top: 20px;">Game Favorite</a>
+  <a href="shop.html" class="button">Shop</a>
+</section>
+
+<section id="contact" class="section" data-aos="fade-up">
+  <div class="container text-center">
+    <h2>Kontak Saya</h2>
+    <p>Email: <a href="mailto:anrasyauqiybahij@gmail.com">anrasyauqiybahij@gmail.com</a></p>
+    <p>sosmed: <a href="https://www.tiktok.com/@anrasyauqiybahij26?_t=ZS-8vuLMn9sjIt&_r=1" target="_blank">tiktok</a></p>
+    <p>whatsapp: <a href="https://wa.me/6287722011556" target="_blank">chatme</a></p>
+  </div>
+</section>
+
+<footer class="footer">
+  &copy; 2025 Bahij. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
