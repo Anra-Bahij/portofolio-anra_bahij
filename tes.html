@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Lagu Favorit</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+    }
+
+    #daftar-lagu {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    #daftar-lagu li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    #daftar-lagu li:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    #daftar-lagu li.active {
+      background: blue;
+      color: white;
+      font-weight: bold;
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .duration {
+      margin-left: 10px;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+
+    .indicator {
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      box-shadow: 0 0 10px yellow;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<section id="music" class="section">
+  <div class="container">
+    <h2>Daftar Lagu Favorit</h2>
+
+    <ul id="daftar-lagu">
+      <li onclick="playSong(this, 'seranav2.mp3')">
+        <div class="title">Serana - For Revange</div>
+        <div class="duration">4:00</div>
+        <div class="indicator">▶</div>
+      </li>
+      <li onclick="playSong(this, 'duka.mp3')">
+        <div class="title">Duka - Last Chlid</div>
+        <div class="duration">5:16</div>
+        <div class="indicator">▶</div>
+      </li>
+      <li onclick="playSong(this, 'jakarta.mp3')">
+        <div class="title">Jakarta Hari Ini - For Revange</div>
+        <div class="duration">3:36</div>
+        <div class="indicator">▶</div>
+      </li>
+      <li onclick="playSong(this, 'where.mp3')">
+        <div class="title">Where We Are - One Direction</div>
+        <div class="duration">3:31</div>
+        <div class="indicator">▶</div>
+      </li>
+      <li onclick="playSong(this, 'Pompeii.mp3')">
+        <div class="title">Pompeii - Bastille</div>
+        <div class="duration">3:33</div>
+        <div class="indicator">▶</div>
+      </li>
+    </ul>
+
+    <audio id="audioPlayer">
+      <source id="audioSource" src="" type="audio/mpeg">
+      Browser Anda tidak mendukung tag audio.
+    </audio>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var currentIndex = -1;
+    var listItems = document.querySelectorAll('#daftar-lagu li');
+    var audioPlayer = document.getElementById('audioPlayer');
+    var audioSource = document.getElementById('audioSource');
+
+    window.playSong = function (element, file) {
+      var selectedIndex = Array.from(listItems).indexOf(element);
+
+      if (currentIndex === selectedIndex && !audioPlayer.paused) {
+        fadeOut(audioPlayer, 500);
+        element.querySelector('.indicator').innerText = '▶';
+        element.classList.remove('active');
+        currentIndex = -1;
+        return;
+      }
+
+      listItems.forEach(function (item) {
+        item.classList.remove('active');
+        item.querySelector('.indicator').innerText = '▶';
+      });
+
+      element.classList.add('active');
+      element.querySelector('.indicator').innerText = '⏸';
+
+      audioSource.src = file;
+      audioPlayer.load();
+      fadeIn(audioPlayer, 500);
+
+      currentIndex = selectedIndex;
+    };
+
+    audioPlayer.addEventListener('ended', function () {
+      if (currentIndex + 1 < listItems.length) {
+        listItems[currentIndex + 1].click();
+      }
+    });
+
+    function fadeIn(audio, duration) {
+      audio.volume = 0;
+      audio.play();
+      var step = 0.05;
+      var interval = duration / (1 / step);
+      var fade = setInterval(function () {
+        if (audio.volume < 1) {
+          audio.volume = Math.min(1, audio.volume + step);
+        } else {
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    function fadeOut(audio, duration) {
+      var step = 0.05;
+      var interval = duration / (1 / step);
+      var fade = setInterval(function () {
+        if (audio.volume > 0) {
+          audio.volume = Math.max(0, audio.volume - step);
+        } else {
+          clearInterval(fade);
+          audio.pause();
+        }
+      }, interval);
+    }
+  });
+</script>
+
+</body>
+</html>
